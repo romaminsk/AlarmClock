@@ -16,15 +16,22 @@ class ViewController: UIViewController {
     @IBOutlet weak var alarmDatePicker: UIDatePicker!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var labelSwitcher: UISwitch!
+    @IBOutlet weak var slider: UISlider!
+    @IBOutlet weak var volumeText: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
     @IBAction func volumeSlider(_ sender: Any) {
+        volumeText.text = String(format: "%.2f", Double(slider.value))
+        volumeProgress.progress = slider.value
     }
 
+    // Хотелось бы добавить регулярное выражение
     @IBAction func volumeTextField(_ sender: Any) {
+        slider.value = Float(volumeText.text ?? "") ?? 0.0
+        volumeProgress.progress = Float(volumeText.text ?? "") ?? 0.0
     }
 
     @IBAction func setTimeBtn(_ sender: Any) {
